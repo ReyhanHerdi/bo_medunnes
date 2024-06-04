@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\PasienController;
 use App\Http\Controllers\api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,12 @@ Route::middleware('auth:sanctum')->get('/admin', function (Request $request) {
     return $request->admin();
 });
 
+// User
 Route::get('users', [UserController::class, 'index']);
 Route::get('users/{id}', [UserController::class, 'show']);
 Route::post('users', [UserController::class, 'store']);
+
+// Pasien
+Route::get('pasien', [PasienController::class, 'index']);
+Route::post('pasien', [PasienController::class, 'store']);
+Route::post('pasien/{id}', [PasienController::class, 'update']);
