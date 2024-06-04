@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigInteger('spesialis_id')->index();
             $table->string('title_depan');
             $table->string('nama_dokter');
-            $table->string('title_belakanag');
+            $table->string('title_belakang');
             $table->string('img_dokter')->nullable();
             $table->string('alamat');
             $table->string('no_tlp');

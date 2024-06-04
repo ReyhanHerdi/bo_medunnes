@@ -32,12 +32,12 @@ class DokterController extends Controller
             'alamat' => 'required',
             'no_tlp' => 'required',
             'tempat_kerja' => 'required',
-            'tahun_lulus' => 'required',
+            'tempat_lulus' => 'required',
             'tgl_mulai_aktif' => 'required',
-            'alumni_kampus' => 'required',
+            'alumni' => 'required',
             'no_reg' => 'required',
             'jenis_kelamin' => 'required',
-            'status' => ['required', 'date']
+            'status' => 'required'
         ]);
 
         $dokter = new Dokter();
@@ -50,8 +50,9 @@ class DokterController extends Controller
         $dokter->alamat = $request->alamat;
         $dokter->no_tlp = $request->no_tlp;
         $dokter->tempat_kerja = $request->tempat_kerja;
-        $dokter->tahun_lulus = $request->tahun_lulus;
+        $dokter->tempat_lulus = $request->tempat_lulus;
         $dokter->tgl_mulai_aktif = $request->tgl_mulai_aktif;
+        $dokter->alumni = $request->alumni;
         $dokter->no_reg = $request->no_reg;
         $dokter->jenis_kelamin = $request->jenis_kelamin;
         $dokter->status = $request->status;
@@ -83,9 +84,9 @@ class DokterController extends Controller
                 'alamat' => 'required',
                 'no_tlp' => 'required',
                 'tempat_kerja' => 'required',
-                'tahun_lulus' => 'required',
+                'tempat_lulus' => 'required',
                 'tgl_mulai_aktif' => 'required',
-                'alumni_kampus' => 'required',
+                'alumni' => 'required',
                 'no_reg' => 'required',
                 'jenis_kelamin' => 'required',
                 'status' => ['required', 'date']
@@ -100,8 +101,9 @@ class DokterController extends Controller
             $dokter->alamat = $request->alamat;
             $dokter->no_tlp = $request->no_tlp;
             $dokter->tempat_kerja = $request->tempat_kerja;
-            $dokter->tahun_lulus = $request->tahun_lulus;
+            $dokter->tempat_lulus = $request->tempat_lulus;
             $dokter->tgl_mulai_aktif = $request->tgl_mulai_aktif;
+            $dokter->alumni = $request->alumni;
             $dokter->no_reg = $request->no_reg;
             $dokter->jenis_kelamin = $request->jenis_kelamin;
             $dokter->status = $request->status;
