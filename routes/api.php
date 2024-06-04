@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\DokterController;
 use App\Http\Controllers\api\PasienController;
 use App\Http\Controllers\api\PasienTambahanController;
 use App\Http\Controllers\api\UserController;
@@ -35,3 +36,8 @@ Route::post('pasien/{id}', [PasienController::class, 'update']);
 Route::get('pasienTambahan', [PasienTambahanController::class, 'index']);
 Route::post('pasienTambahan', [PasienTambahanController::class, 'store']);
 Route::post('pasienTambahan/{id}', [PasienTambahanController::class, 'update']);
+
+// Dokter
+Route::get('dokter', [DokterController::class, 'index']);
+Route::post('dokter', [DokterController::class, 'store']);
+Route::post('dokter/{id}', [DokterController::class, 'update']);
