@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email');
             $table->enum('type', ['pasien', 'dokter', 'admin']);
             $table->string('password');
-            $table->string('created_token');
+            $table->string('created_token')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });
