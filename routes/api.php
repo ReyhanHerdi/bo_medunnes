@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\PasienController;
+use App\Http\Controllers\api\PasienTambahanController;
 use App\Http\Controllers\api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,3 +30,8 @@ Route::post('users', [UserController::class, 'store']);
 Route::get('pasien', [PasienController::class, 'index']);
 Route::post('pasien', [PasienController::class, 'store']);
 Route::post('pasien/{id}', [PasienController::class, 'update']);
+
+// Pasien Tambahan
+Route::get('pasienTambahan', [PasienTambahanController::class, 'index']);
+Route::post('pasienTambahan', [PasienTambahanController::class, 'store']);
+Route::post('pasienTambahan/{id}', [PasienTambahanController::class, 'update']);
