@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('user_pasien', function (Blueprint $table) {
-            $table->timestamp('banned_at')->nullable();
-            //
+        Schema::create('spesialis', function (Blueprint $table) {
+            $table->id('id_spesialis')->autoIncrement();
+            $table->string('nama_spesialis');
+            $table->string('img_spesialis');
+            $table->timestamps();
         });
     }
 
@@ -22,9 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('user_pasien', function (Blueprint $table) {
-            $table->dropColumn('banned_at')->nullable();
-            //
-        });
+        Schema::dropIfExists('spesialis');
     }
 };
