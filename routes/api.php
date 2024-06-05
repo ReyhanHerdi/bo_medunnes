@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\api\DiskusiController;
 use App\Http\Controllers\api\DokterController;
+use App\Http\Controllers\api\JanjiController;
+use App\Http\Controllers\api\KonsultasiController;
 use App\Http\Controllers\api\PasienController;
 use App\Http\Controllers\api\PasienTambahanController;
 use App\Http\Controllers\api\UserController;
@@ -42,3 +45,21 @@ Route::get('dokter', [DokterController::class, 'index']);
 Route::get('dokter/{id}', [DokterController::class, 'show']);
 Route::post('dokter', [DokterController::class, 'store']);
 Route::post('dokter/{id}', [DokterController::class, 'update']);
+
+// Konsultasi
+Route::get('konsultasi', [KonsultasiController::class, 'index']);
+Route::get('konsultasi/{id}', [KonsultasiController::class, 'show']);
+Route::post('konsultasi', [KonsultasiController::class, 'store']);
+Route::post('konsultasi/{id}', [KonsultasiController::class, 'update']);
+
+// Diskusi
+Route::get('diskusi', [DiskusiController::class, 'index']);
+Route::get('diskusi/{id}', [DiskusiController::class, 'show']);
+Route::post('diskusi', [DiskusiController::class, 'store']);
+Route::post('diskusi/{id}', [DiskusiController::class, 'update']);
+
+// Janji
+Route::get('janji', [JanjiController::class, 'index']);
+Route::get('janji/{id}', [JanjiController::class, 'show']);
+Route::post('janji', [JanjiController::class, 'store']);
+Route::post('janji/{id}', [JanjiController::class, 'update']);

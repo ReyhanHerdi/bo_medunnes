@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Konsultasi;
+use App\Models\Diskusi;
 use Illuminate\Http\Request;
 
-class KonsultasiController extends Controller
+class DiskusiController extends Controller
 {
     public function index() {
-        $data = Konsultasi::orderBy('id_konsultasi', 'asc')->get();
+        $data = Diskusi::orderBy('id_diskusi', 'asc')->get();
         return response()->json([
             'status' => true,
             'message' => 'Data is found',
@@ -18,7 +18,7 @@ class KonsultasiController extends Controller
     }
 
     public function show(int $id) {
-        $data = Konsultasi::find($id);
+        $data = Diskusi::find($id);
         if (empty($data)) {
             return response()->json([
                 'status' => false,
@@ -35,17 +35,17 @@ class KonsultasiController extends Controller
 
     public function store(Request $request) {
         $request->validate([
+            'konsultasi_id' => 'required',
             'pasien_id' => 'required',
-            'dokter_id' => 'required',
-            'topik' => 'required'
+            'message' => 'required'
         ]);
 
-        $konsultasi = new Konsultasi();
-        $konsultasi->pasien_id = $request->pasien_id;
-        $konsultasi->dokter_id = $request->dokter_id;
-        $konsultasi->topik = $request->topik;
+        $diskusi = new Diskusi();
+        $diskusi->konsultasi_id = $request->konsultasi_id;
+        $diskusi->pasien_id = $request->pasien_id;
+        $diskusi->message = $request->message;
 
-        $post = $konsultasi->save();
+        $post = $diskusi->save();
 
         return response()->json([
             'status' => true,
@@ -54,25 +54,25 @@ class KonsultasiController extends Controller
     }
 
     public function update(int $id, Request $request) {
-        $konsultasi = Konsultasi::find($id);
+        $diskusi = Diskusi::find($id);
 
-        if (empty($konsultasi)) {
+        if (empty($diskusi)) {
             return response()->json([
                 'status' => false,
                 'message' => 'Data not found'
             ]);
         } else {
             $request->validate([
+                'konsultasi_id' => 'required',
                 'pasien_id' => 'required',
-                'dokter_id' => 'required',
-                'topik' => 'required'
+                'message' => 'required'
             ]);
     
-            $konsultasi->pasien_id = $request->pasien_id;
-            $konsultasi->dokter_id = $request->dokter_id;
-            $konsultasi->topik = $request->topik;
+            $diskusi->konsultasi_id = $request->konsultasi_id;
+            $diskusi->pasien_id = $request->pasien_id;
+            $diskusi->message = $request->message;
     
-            $post = $konsultasi->save();
+            $post = $diskusi->save();
     
             return response()->json([
                 'status' => true,

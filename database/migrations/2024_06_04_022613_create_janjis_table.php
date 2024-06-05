@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigInteger('dokter_id')->index();
             $table->bigInteger('pasien_tambahan_id')->index();
             $table->bigInteger('sesi_id')->index();
-            $table->dateTime("datetime");
+            $table->date("datetime");
             $table->string('catatan');
             $table->enum('status', ['pending', 'accepted', 'rejected']);
             $table->timestamps();

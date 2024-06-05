@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Konsultasi;
+use App\Models\janji;
 use Illuminate\Http\Request;
 
-class KonsultasiController extends Controller
+class JanjiController extends Controller
 {
     public function index() {
-        $data = Konsultasi::orderBy('id_konsultasi', 'asc')->get();
+        $data = janji::orderBy('id_janji', 'asc')->get();
         return response()->json([
             'status' => true,
             'message' => 'Data is found',
@@ -18,7 +18,7 @@ class KonsultasiController extends Controller
     }
 
     public function show(int $id) {
-        $data = Konsultasi::find($id);
+        $data = janji::find($id);
         if (empty($data)) {
             return response()->json([
                 'status' => false,
@@ -37,15 +37,23 @@ class KonsultasiController extends Controller
         $request->validate([
             'pasien_id' => 'required',
             'dokter_id' => 'required',
-            'topik' => 'required'
+            'pasien_tambahan_id' => 'required',
+            'sesi_id' => 'required',
+            'datetime' => 'required',
+            'catatan' => 'required',
+            'status' => 'required',
         ]);
 
-        $konsultasi = new Konsultasi();
-        $konsultasi->pasien_id = $request->pasien_id;
-        $konsultasi->dokter_id = $request->dokter_id;
-        $konsultasi->topik = $request->topik;
+        $janji = new janji();
+        $janji->pasien_id = $request->pasien_id;
+        $janji->dokter_id = $request->dokter_id;
+        $janji->pasien_tambahan_id = $request->pasien_tambahan_id;
+        $janji->sesi_id = $request->sesi_id;
+        $janji->datetime = $request->datetime;
+        $janji->catatan = $request->catatan;
+        $janji->status = $request->status;
 
-        $post = $konsultasi->save();
+        $post = $janji->save();
 
         return response()->json([
             'status' => true,
@@ -54,9 +62,9 @@ class KonsultasiController extends Controller
     }
 
     public function update(int $id, Request $request) {
-        $konsultasi = Konsultasi::find($id);
+        $janji = janji::find($id);
 
-        if (empty($konsultasi)) {
+        if (empty($janji)) {
             return response()->json([
                 'status' => false,
                 'message' => 'Data not found'
@@ -65,14 +73,22 @@ class KonsultasiController extends Controller
             $request->validate([
                 'pasien_id' => 'required',
                 'dokter_id' => 'required',
-                'topik' => 'required'
+                'pasien_tambahan_id' => 'required',
+                'sesi_id' => 'required',
+                'datetime' => 'required',
+                'catatan' => 'required',
+                'status' => 'required',
             ]);
     
-            $konsultasi->pasien_id = $request->pasien_id;
-            $konsultasi->dokter_id = $request->dokter_id;
-            $konsultasi->topik = $request->topik;
+            $janji->pasien_id = $request->pasien_id;
+            $janji->dokter_id = $request->dokter_id;
+            $janji->pasien_tambahan_id = $request->pasien_tambahan_id;
+            $janji->sesi_id = $request->sesi_id;
+            $janji->datetime = $request->datetime;
+            $janji->catatan = $request->catatan;
+            $janji->status = $request->status;
     
-            $post = $konsultasi->save();
+            $post = $janji->save();
     
             return response()->json([
                 'status' => true,

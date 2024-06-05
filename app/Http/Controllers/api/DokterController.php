@@ -21,7 +21,7 @@ class DokterController extends Controller
         $data = Dokter::find($id);
         return response()->json([
             'status' => true,
-            'message' => 'Dat;a found',
+            'message' => 'Data found',
             'data' => $data
         ]);
     }

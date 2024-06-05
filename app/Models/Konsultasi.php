@@ -12,6 +12,7 @@ class Konsultasi extends Model
     use HasFactory;
     use LogsActivity;
 
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()

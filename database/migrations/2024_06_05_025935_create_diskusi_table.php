@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sesi', function (Blueprint $table) {
-            $table->bigIncrements('id_sesi');
-            $table->bigInteger('dokter_id')->index();
-            $table->time('dari');
-            $table->time('sampai');
-            $table->integer('day');
+        Schema::create('diskusi', function (Blueprint $table) {
+            $table->id('id_diskusi')->autoIncrement();
+            $table->bigInteger('konsultasi_id')->index();
+            $table->bigInteger('pasien_id')->index();
+            $table->string('message');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sesi');
+        Schema::dropIfExists('diskusi');
     }
 };
