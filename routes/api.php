@@ -6,6 +6,7 @@ use App\Http\Controllers\api\JanjiController;
 use App\Http\Controllers\api\KonsultasiController;
 use App\Http\Controllers\api\PasienController;
 use App\Http\Controllers\api\PasienTambahanController;
+use App\Http\Controllers\api\RatingController;
 use App\Http\Controllers\api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -63,3 +64,7 @@ Route::get('janji', [JanjiController::class, 'index']);
 Route::get('janji/{id}', [JanjiController::class, 'show']);
 Route::post('janji', [JanjiController::class, 'store']);
 Route::post('janji/{id}', [JanjiController::class, 'update']);
+
+// Rating
+Route::get('rating', [RatingController::class, 'index']);
+Route::post('rating', [RatingController::class, 'store']);
