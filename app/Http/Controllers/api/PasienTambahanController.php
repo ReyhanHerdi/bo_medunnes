@@ -84,4 +84,21 @@ class PasienTambahanController extends Controller
             ]);
         }
     }
+
+    public function destroy(int $id) {
+        $pasienTambahan = PasienTambahan::find($id);
+        if ($pasienTambahan) {
+            $post = $pasienTambahan->delete();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Delete data success',
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data is not found',
+            ]);
+        }
+    }
 }

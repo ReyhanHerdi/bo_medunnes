@@ -80,4 +80,21 @@ class KonsultasiController extends Controller
             ]);
         }
     }
+
+    public function destroy(int $id) {
+        $konsultasi = Konsultasi::find($id);
+        if ($konsultasi) {
+            $post = $konsultasi->delete();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Delete data success',
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data is not found',
+            ]);
+        }
+    }
 }

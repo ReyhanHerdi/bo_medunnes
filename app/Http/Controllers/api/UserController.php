@@ -55,4 +55,51 @@ class UserController extends Controller
             'message' => 'Insert data success'
         ]);
     }
+
+    public function update(Request $request, int $id) {
+        $user = User::find($id);
+        if (empty($user)) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Data is not found'
+            ]);
+        } else {
+            $request->validate([
+                'name' => 'required',
+                'email' => ['required', 'email'],
+                'password' => ['required', 'min:8'],
+                'type' => 'required'
+            ]);
+    
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->type = $request->type;
+            $user->password = Hash::make($request->password);
+    
+            $post = $user->save();
+            
+            return response()->json([
+                'status' => true,
+                'message' => 'Insert data success'
+            ]);            
+        }
+
+    }
+
+    public function destroy(int $id) {
+        $user = User::find($id);
+        if ($user) {
+            $post = $user->delete();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Delete data success',
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data is not found',
+            ]);
+        }
+    }
 }

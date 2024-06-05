@@ -80,4 +80,21 @@ class DiskusiController extends Controller
             ]);
         }
     }
+
+    public function destroy(int $id) {
+        $diskusi = Diskusi::find($id);
+        if ($diskusi) {
+            $post = $diskusi->delete();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Delete data success',
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data is not found',
+            ]);
+        }
+    }
 }

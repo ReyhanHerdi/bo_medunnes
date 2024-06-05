@@ -18,7 +18,19 @@ class PasienController extends Controller
     }
 
     public function show(int $id) {
-    
+        $pasien = Pasien::find($id);
+        if ($pasien) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Delete data success',
+                'data' => $pasien
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data is not found',
+            ]);
+        }
     }
 
     public function store(Request $request) {
@@ -93,6 +105,23 @@ class PasienController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'Update data success'
+            ]);
+        }
+    }
+
+    public function destroy(int $id) {
+        $pasien = Pasien::find($id);
+        if ($pasien) {
+            $post = $pasien->delete();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Delete data success',
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data is not found',
             ]);
         }
     }

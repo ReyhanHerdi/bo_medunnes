@@ -96,4 +96,21 @@ class JanjiController extends Controller
             ]);
         }
     }
+
+    public function destroy(int $id) {
+        $janji = janji::find($id);
+        if ($janji) {
+            $post = $janji->delete();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Delete data success',
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data is not found',
+            ]);
+        }
+    }
 }

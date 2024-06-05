@@ -121,4 +121,21 @@ class DokterController extends Controller
             ]);
         }
     }
+
+    public function destroy(int $id) {
+        $dokter = Dokter::find($id);
+        if ($dokter) {
+            $post = $dokter->delete();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Delete data success',
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data is not found',
+            ]);
+        }
+    }
 }
