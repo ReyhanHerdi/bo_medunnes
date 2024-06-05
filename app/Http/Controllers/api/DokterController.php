@@ -18,7 +18,12 @@ class DokterController extends Controller
     }
 
     public function show(int $id) {
-    
+        $data = Dokter::find($id);
+        return response()->json([
+            'status' => true,
+            'message' => 'Dat;a found',
+            'data' => $data
+        ]);
     }
 
     public function store(Request $request) {
@@ -68,7 +73,7 @@ class DokterController extends Controller
     public function update(int $id, Request $request) {
         $dokter = Dokter::find($id);
         
-        if (empty($pasien)) {
+        if (empty($dokter)) {
             return response()->json([
                 'status' => false,
                 'message' => 'Data not found'
@@ -89,7 +94,7 @@ class DokterController extends Controller
                 'alumni' => 'required',
                 'no_reg' => 'required',
                 'jenis_kelamin' => 'required',
-                'status' => ['required', 'date']
+                'status' => 'required'
             ]);
     
             $dokter->user_id = $request->user_id;

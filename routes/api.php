@@ -39,5 +39,6 @@ Route::post('pasienTambahan/{id}', [PasienTambahanController::class, 'update']);
 
 // Dokter
 Route::get('dokter', [DokterController::class, 'index']);
+Route::get('dokter/{id}', [DokterController::class, 'show']);
 Route::post('dokter', [DokterController::class, 'store']);
 Route::post('dokter/{id}', [DokterController::class, 'update']);
