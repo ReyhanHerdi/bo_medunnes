@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nama_pasien_tambahan');
             $table->string('TB');
             $table->string('BB');
-            $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
+            $table->enum('jenis_kelamin', ['L', 'P']);
             $table->date('tgl_lahir');
             $table->string('hubungan_keluarga');
             $table->timestamps();

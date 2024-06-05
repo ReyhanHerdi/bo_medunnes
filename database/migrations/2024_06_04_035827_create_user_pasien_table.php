@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('user_pasien', function (Blueprint $table) {
             $table->id('id_pasien')->autoIncrement();
             $table->bigInteger('user_id')->index();
-            $table->bigInteger('NIK');
+            $table->bigInteger('nik');
             $table->string('nama_pasien');
             $table->string('img_pasien');
-            $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
+            $table->enum('jenis_kelamin', ['L', 'P']);
             $table->string('alamat');
             $table->string('no_tlp');
             $table->integer('TB');
