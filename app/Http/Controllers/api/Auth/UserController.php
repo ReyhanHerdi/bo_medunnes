@@ -24,7 +24,7 @@ class UserController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'Data is found',
-                'data' => $data
+                'data' => array($data)
             ], 200);
         } else {
             return response()->json([

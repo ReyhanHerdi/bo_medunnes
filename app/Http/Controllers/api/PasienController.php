@@ -18,12 +18,12 @@ class PasienController extends Controller
     }
 
     public function show(int $id) {
-        $pasien = Pasien::find($id);
+        $pasien = Pasien::where('user_id', $id)->first();
         if ($pasien) {
             return response()->json([
                 'status' => true,
                 'message' => 'Delete data success',
-                'data' => $pasien
+                'data' => array($pasien)
             ]);
         } else {
             return response()->json([

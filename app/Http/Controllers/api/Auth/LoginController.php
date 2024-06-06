@@ -9,6 +9,22 @@ use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
+    public function loginStatus() {
+        $auth = auth()->guard('api');
+        if (!$auth->check()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Not login yet',
+                'user' => $auth->user()
+            ]);
+        }
+        return response()->json([
+            'status' => true,
+            'message' => 'Already login',
+            'user' => $auth->user()
+        ]);
+    }
+
     public function login(Request $request)
     {
         $request->validate([
@@ -27,7 +43,7 @@ class LoginController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => 'Login failed. Check email and password again.'
-            ], 401);
+            ]);
         }
 
         return response()->json([

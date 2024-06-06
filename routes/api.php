@@ -35,6 +35,7 @@ Route::put('users/{id}', [UserController::class, 'update']);
 Route::delete('users/{id}', [UserController::class, 'destroy']);
 
 // Login
+Route::get('login', [LoginController::class, 'loginStatus']);
 Route::post('login', [LoginController::class, 'login']);
 
 // Pasien
