@@ -13,7 +13,8 @@
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
         "mchev/banhammer": "^1.2",
-        "spatie/laravel-activitylog": "^4.7"
+        "spatie/laravel-activitylog": "^4.7",
+        "tymon/jwt-auth": "2.1.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

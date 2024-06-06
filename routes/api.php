@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\api\DiskusiController;
-use App\Http\Controllers\api\DokterController;
-use App\Http\Controllers\api\JanjiController;
-use App\Http\Controllers\api\KonsultasiController;
-use App\Http\Controllers\api\PasienController;
-use App\Http\Controllers\api\PasienTambahanController;
-use App\Http\Controllers\api\RatingController;
-use App\Http\Controllers\api\UserController;
+use App\Http\Controllers\api\Auth\LoginController;
+use App\Http\Controllers\Api\DiskusiController;
+use App\Http\Controllers\Api\DokterController;
+use App\Http\Controllers\Api\JanjiController;
+use App\Http\Controllers\Api\KonsultasiController;
+use App\Http\Controllers\Api\PasienController;
+use App\Http\Controllers\Api\PasienTambahanController;
+use App\Http\Controllers\Api\RatingController;
+use App\Http\Controllers\Api\Auth\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,10 @@ Route::get('users/{id}', [UserController::class, 'show']);
 Route::post('users', [UserController::class, 'store']);
 Route::put('users/{id}', [UserController::class, 'update']);
 Route::delete('users/{id}', [UserController::class, 'destroy']);
+
+// Login
+Route::post('login', [LoginController::class, 'login']);
+
 // Pasien
 Route::get('pasien', [PasienController::class, 'index']);
 Route::get('pasien/{id}', [PasienController::class, 'show']);
