@@ -16,7 +16,7 @@ return new class extends Migration
             $table->bigInteger('user_id')->index();
             $table->bigInteger('nik');
             $table->string('nama_pasien');
-            $table->string('img_pasien');
+            $table->string('img_pasien')->nullable();
             $table->enum('jenis_kelamin', ['L', 'P']);
             $table->string('alamat');
             $table->string('no_tlp');

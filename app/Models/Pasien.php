@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -11,7 +12,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 // use Mchev\Banhammer\Traits\Bannable;
 
-class Pasien extends Authenticatable
+class Pasien extends Model
 {
     use HasApiTokens, HasFactory, Notifiable, LogsActivity;
 
@@ -34,7 +35,6 @@ class Pasien extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'id_pasien',
         'user_id',
         'NIK',
         'nama_pasien',

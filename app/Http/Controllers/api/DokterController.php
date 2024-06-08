@@ -18,7 +18,7 @@ class DokterController extends Controller
     }
 
     public function show(int $id) {
-        $data = Dokter::find($id);
+        $data = Dokter::where('user_id', $id)->first();
         return response()->json([
             'status' => true,
             'message' => 'Data found',
@@ -33,7 +33,6 @@ class DokterController extends Controller
             'title_depan' => 'required',
             'nama_dokter' => 'required',
             'title_belakang' => 'required',
-            'img_dokter' => 'required',
             'alamat' => 'required',
             'no_tlp' => 'required',
             'tempat_kerja' => 'required',
@@ -71,7 +70,7 @@ class DokterController extends Controller
     }
 
     public function update(int $id, Request $request) {
-        $dokter = Dokter::find($id);
+        $dokter = Dokter::where('user_id', $id)->first();
         
         if (empty($dokter)) {
             return response()->json([

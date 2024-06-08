@@ -42,6 +42,8 @@ class UserController extends Controller
             'type' => 'required'
         ]);
 
+        
+
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
@@ -52,7 +54,8 @@ class UserController extends Controller
         
         return response()->json([
             'status' => true,
-            'message' => 'Insert data success'
+            'message' => 'Insert data success',
+            'data' => array($user)
         ]);
     }
 

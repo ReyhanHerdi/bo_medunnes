@@ -22,7 +22,7 @@ class PasienController extends Controller
         if ($pasien) {
             return response()->json([
                 'status' => true,
-                'message' => 'Delete data success',
+                'message' => 'Data is found',
                 'data' => array($pasien)
             ]);
         } else {
@@ -38,7 +38,6 @@ class PasienController extends Controller
             'user_id' => 'required',
             'nik' => 'required',
             'nama_pasien' => 'required',
-            'img_pasien' => 'required',
             'jenis_kelamin' => 'required',
             'alamat' => 'required',
             'no_tlp' => 'required',
@@ -68,7 +67,7 @@ class PasienController extends Controller
     }
 
     public function update(int $id, Request $request) {
-        $pasien = Pasien::find($id);
+        $pasien = Pasien::where('user_id', $id)->first();
         
         if (empty($pasien)) {
             return response()->json([
@@ -76,36 +75,44 @@ class PasienController extends Controller
                 'message' => 'Data not found'
             ]);
         } else {
-            $request->validate([
-                'user_id' => 'required',
-                'nik' => 'required',
-                'nama_pasien' => 'required',
-                'img_pasien' => 'required',
-                'jenis_kelamin' => 'required',
-                'alamat' => 'required',
-                'no_tlp' => 'required',
-                'TB' => 'required',
-                'BB' => 'required',
-                'status' => 'required'
-            ]);
-    
-            $pasien->user_id = $request->user_id;
-            $pasien->nik = $request->nik;
-            $pasien->nama_pasien = $request->nama_pasien;
-            $pasien->img_pasien = $request->img_pasien;
-            $pasien->jenis_kelamin = $request->jenis_kelamin;
-            $pasien->alamat = $request->alamat;
-            $pasien->no_tlp = $request->no_tlp;
-            $pasien->TB = $request->TB;
-            $pasien->BB = $request->BB;
-            $pasien->status = $request->status;
-    
-            $post = $pasien->save();
-    
-            return response()->json([
-                'status' => true,
-                'message' => 'Update data success'
-            ]);
+            try {
+                $request->validate([
+                    'user_id' => 'required',
+                    'NIK' => 'required',
+                    'nama_pasien' => 'required',
+                    'jenis_kelamin' => 'required',
+                    'alamat' => 'required',
+                    'no_tlp' => 'required',
+                    'TB' => 'required',
+                    'BB' => 'required',
+                    'status' => 'required'
+                ]);
+        
+                $pasien->user_id = $request->user_id;
+                $pasien->NIK = $request->NIK;
+                $pasien->nama_pasien = $request->nama_pasien;
+                $pasien->img_pasien = $request->img_pasien;
+                $pasien->jenis_kelamin = $request->jenis_kelamin;
+                $pasien->alamat = $request->alamat;
+                $pasien->no_tlp = $request->no_tlp;
+                $pasien->TB = $request->TB;
+                $pasien->BB = $request->BB;
+                $pasien->status = $request->status;
+        
+                $post = $pasien->save();
+        
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Update data success'
+                ]);
+            } catch (\Throwable $th) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Update data fail',
+                    'info' => $th->getMessage()
+                ]);
+            }
+        
         }
     }
 
