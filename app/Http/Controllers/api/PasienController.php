@@ -34,36 +34,45 @@ class PasienController extends Controller
     }
 
     public function store(Request $request) {
-        $request->validate([
-            'user_id' => 'required',
-            'nik' => 'required',
-            'nama_pasien' => 'required',
-            'jenis_kelamin' => 'required',
-            'alamat' => 'required',
-            'no_tlp' => 'required',
-            'TB' => 'required',
-            'BB' => 'required',
-            'status' => 'required'
-        ]);
-
-        $pasien = new Pasien;
-        $pasien->user_id = $request->user_id;
-        $pasien->nik = $request->nik;
-        $pasien->nama_pasien = $request->nama_pasien;
-        $pasien->img_pasien = $request->img_pasien;
-        $pasien->jenis_kelamin = $request->jenis_kelamin;
-        $pasien->alamat = $request->alamat;
-        $pasien->no_tlp = $request->no_tlp;
-        $pasien->TB = $request->TB;
-        $pasien->BB = $request->BB;
-        $pasien->status = $request->status;
-
-        $post = $pasien->save();
-
-        return response()->json([
-            'status' => true,
-            'message' => 'Insert data success'
-        ]);
+        try {
+            $request->validate([
+                'user_id' => 'required',
+                'NIK' => 'required',
+                'nama_pasien' => 'required',
+                'jenis_kelamin' => 'required',
+                'alamat' => 'required',
+                'no_tlp' => 'required',
+                'TB' => 'required',
+                'BB' => 'required',
+                'status' => 'required'
+            ]);
+    
+            $pasien = new Pasien;
+            $pasien->user_id = $request->user_id;
+            $pasien->NIK = $request->NIK;
+            $pasien->nama_pasien = $request->nama_pasien;
+            $pasien->img_pasien = $request->img_pasien;
+            $pasien->jenis_kelamin = $request->jenis_kelamin;
+            $pasien->alamat = $request->alamat;
+            $pasien->no_tlp = $request->no_tlp;
+            $pasien->TB = $request->TB;
+            $pasien->BB = $request->BB;
+            $pasien->status = $request->status;
+    
+            $post = $pasien->save();
+    
+            return response()->json([
+                'status' => true,
+                'message' => 'Insert data success',
+                'data' => array($pasien)
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Insert data fail',
+                'error' => $th->getMessage()
+            ]);
+        }
     }
 
     public function update(int $id, Request $request) {

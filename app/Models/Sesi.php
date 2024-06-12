@@ -26,7 +26,6 @@ class Sesi extends Model
 
     protected $fillable = [
         'id_sesi',
-        'dokter_id',
         'dari',
         'sampai',
         'day'

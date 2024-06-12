@@ -22,9 +22,9 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('no_tlp');
             $table->string('tempat_kerja');
-            $table->string('tempat_lulus');
+            $table->string('tahun_lulus');
             $table->date('tgl_mulai_aktif');
-            $table->string('alumni');
+            $table->string('alumni_kampus');
             $table->bigInteger('no_reg');
             $table->enum('jenis_kelamin', ['L', 'P']);
             $table->enum('status', ['pending', 'approve', 'reject', 'suspend']);

@@ -22,7 +22,7 @@ class DokterController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'Data found',
-            'data' => $data
+            'data' => array($data)
         ]);
     }
 
@@ -36,9 +36,9 @@ class DokterController extends Controller
             'alamat' => 'required',
             'no_tlp' => 'required',
             'tempat_kerja' => 'required',
-            'tempat_lulus' => 'required',
+            'tahun_lulus' => 'required',
             'tgl_mulai_aktif' => 'required',
-            'alumni' => 'required',
+            'alumni_kampus' => 'required',
             'no_reg' => 'required',
             'jenis_kelamin' => 'required',
             'status' => 'required'
@@ -54,9 +54,9 @@ class DokterController extends Controller
         $dokter->alamat = $request->alamat;
         $dokter->no_tlp = $request->no_tlp;
         $dokter->tempat_kerja = $request->tempat_kerja;
-        $dokter->tempat_lulus = $request->tempat_lulus;
+        $dokter->tahun_lulus = $request->tahun_lulus;
         $dokter->tgl_mulai_aktif = $request->tgl_mulai_aktif;
-        $dokter->alumni = $request->alumni;
+        $dokter->alumni_kampus = $request->alumni_kampus;
         $dokter->no_reg = $request->no_reg;
         $dokter->jenis_kelamin = $request->jenis_kelamin;
         $dokter->status = $request->status;
@@ -78,46 +78,54 @@ class DokterController extends Controller
                 'message' => 'Data not found'
             ]);
         } else {
-            $request->validate([
-                'user_id' => 'required',
-                'spesialis_id' => 'required',
-                'title_depan' => 'required',
-                'nama_dokter' => 'required',
-                'title_belakang' => 'required',
-                'img_dokter' => 'required',
-                'alamat' => 'required',
-                'no_tlp' => 'required',
-                'tempat_kerja' => 'required',
-                'tempat_lulus' => 'required',
-                'tgl_mulai_aktif' => 'required',
-                'alumni' => 'required',
-                'no_reg' => 'required',
-                'jenis_kelamin' => 'required',
-                'status' => 'required'
-            ]);
-    
-            $dokter->user_id = $request->user_id;
-            $dokter->spesialis_id = $request->spesialis_id;
-            $dokter->title_depan = $request->title_depan;
-            $dokter->nama_dokter = $request->nama_dokter;
-            $dokter->title_belakang = $request->title_belakang;
-            $dokter->img_dokter = $request->img_dokter;
-            $dokter->alamat = $request->alamat;
-            $dokter->no_tlp = $request->no_tlp;
-            $dokter->tempat_kerja = $request->tempat_kerja;
-            $dokter->tempat_lulus = $request->tempat_lulus;
-            $dokter->tgl_mulai_aktif = $request->tgl_mulai_aktif;
-            $dokter->alumni = $request->alumni;
-            $dokter->no_reg = $request->no_reg;
-            $dokter->jenis_kelamin = $request->jenis_kelamin;
-            $dokter->status = $request->status;
-    
-            $post = $dokter->save();
-    
-            return response()->json([
-                'status' => true,
-                'message' => 'Update data success'
-            ]);
+            try {
+                $request->validate([
+                    'user_id' => 'required',
+                    'spesialis_id' => 'required',
+                    'title_depan' => 'required',
+                    'nama_dokter' => 'required',
+                    'title_belakang' => 'required',
+                    'alamat' => 'required',
+                    'no_tlp' => 'required',
+                    'tempat_kerja' => 'required',
+                    'tahun_lulus' => 'required',
+                    'tgl_mulai_aktif' => 'required',
+                    'alumni_kampus' => 'required',
+                    'no_reg' => 'required',
+                    'jenis_kelamin' => 'required',
+                    'status' => 'required'
+                ]);
+        
+                $dokter->user_id = $request->user_id;
+                $dokter->spesialis_id = $request->spesialis_id;
+                $dokter->title_depan = $request->title_depan;
+                $dokter->nama_dokter = $request->nama_dokter;
+                $dokter->title_belakang = $request->title_belakang;
+                $dokter->img_dokter = $request->img_dokter;
+                $dokter->alamat = $request->alamat;
+                $dokter->no_tlp = $request->no_tlp;
+                $dokter->tempat_kerja = $request->tempat_kerja;
+                $dokter->tahun_lulus = $request->tahun_lulus;
+                $dokter->tgl_mulai_aktif = $request->tgl_mulai_aktif;
+                $dokter->alumni_kampus = $request->alumni_kampus;
+                $dokter->no_reg = $request->no_reg;
+                $dokter->jenis_kelamin = $request->jenis_kelamin;
+                $dokter->status = $request->status;
+        
+                $post = $dokter->save();
+        
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Update data success'
+                ]);
+            } catch (\Throwable $th) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Update data fail',
+                    'info' => $th->getMessage()
+                ]);
+            }
+        
         }
     }
 

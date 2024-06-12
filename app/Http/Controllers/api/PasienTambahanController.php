@@ -18,7 +18,23 @@ class PasienTambahanController extends Controller
     }
 
     public function show(int $id) {
-    
+        $data = PasienTambahan::where('pasien_id', $id)->get();
+        return response()->json([
+            'status' => true,
+            'message' => 'Data is found',
+            'data' => $data
+        ], 200);
+    }
+
+    public function showById(int $pasienId, int $id) {
+        $data = PasienTambahan::where('pasien_id', $pasienId)
+                                ->where('id_pasien_tambahan', $id)
+                                ->first();
+        return response()->json([
+            'status' => true,
+            'message' => 'Data is found',
+            'data' => array($data)
+        ], 200);
     }
 
     public function store(Request $request) {
@@ -28,7 +44,7 @@ class PasienTambahanController extends Controller
             'TB' => 'required',
             'BB' => 'required',
             'jenis_kelamin' => 'required',
-            'tgl_lahir' => ['required', 'date'],
+            'tgl_lahir' => 'required',
             'hubungan_keluarga' => 'required'
         ]);
 
@@ -64,7 +80,7 @@ class PasienTambahanController extends Controller
                 'TB' => 'required',
                 'BB' => 'required',
                 'jenis_kelamin' => 'required',
-                'tgl_lahir' => ['required', 'date'],
+                'tgl_lahir' => 'required',
                 'hubungan_keluarga' => 'required'
             ]);
     

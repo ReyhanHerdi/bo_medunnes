@@ -14,7 +14,20 @@ class SpesialisSeeder extends Seeder
      */
     public function run(): void
     {
-        $speciality = array('Dokter Umum', 'Kandungan', 'Gigi', 'Kelamin', 'Mata');
+        $speciality = array(
+            'Dokter Umum', 
+            'Kandungan', 
+            'Psikiater', 
+            'Kulit dan Kelamin', 
+            'Anak',
+            'Saraf',
+            'Jantung',
+            'Bedah',
+            'Penyakit dalam',
+            'Mata',
+            'THT',
+            'Gigi'
+        );
         for ($i=0; $i < sizeof($speciality); $i++) { 
             Spesialis::create([
                 'nama_spesialis' => $speciality[$i],

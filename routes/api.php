@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\PasienController;
 use App\Http\Controllers\Api\PasienTambahanController;
 use App\Http\Controllers\Api\RatingController;
 use App\Http\Controllers\Api\Auth\UserController;
+use App\Http\Controllers\api\SesiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -47,6 +48,8 @@ Route::delete('pasien/{id}', [PasienController::class, 'destroy']);
 
 // Pasien Tambahan
 Route::get('pasienTambahan', [PasienTambahanController::class, 'index']);
+Route::get('pasienTambahan/{id}', [PasienTambahanController::class, 'show']);
+Route::get('pasienTambahan/{pasienId}/{id}', [PasienTambahanController::class, 'showById']);
 Route::post('pasienTambahan', [PasienTambahanController::class, 'store']);
 Route::put('pasienTambahan/{id}', [PasienTambahanController::class, 'update']);
 Route::delete('pasienTambahan/{id}', [PasienTambahanController::class, 'destroy']);
@@ -82,3 +85,6 @@ Route::delete('janji/{id}', [JanjiController::class, 'destroy']);
 // Rating
 Route::get('rating', [RatingController::class, 'index']);
 Route::post('rating', [RatingController::class, 'store']);
+
+// Sesi
+Route::get('sesi', [SesiController::class, 'index']);

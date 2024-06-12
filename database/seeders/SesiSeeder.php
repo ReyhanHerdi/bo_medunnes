@@ -32,16 +32,15 @@ class SesiSeeder extends Seeder
             DateTime::createFromFormat('H:i:s','13:30:00'),
             DateTime::createFromFormat('H:i:s','14:30:00')
         );
-
-        $dokter = Dokter::orderBy('id_dokter', 'asc')->get();
+        
         $faker = \Faker\Factory::create('id_ID');
-        for ($i=0; $i < sizeof($dokter); $i++) { 
+        for ($i=0; $i < sizeof($sesiDari); $i++) { 
             Sesi::create([
-                'dokter_id' => $i+1,
-                'dari' => $sesiDari[$i]->format('H:i:s'),
-                'sampai' => $sesiSampai[$i]->format('H:i:s'),
-                'day' => $faker->randomNumber()
+                'dari' => $sesiDari[$i],
+                'sampai' => $sesiSampai[$i],
+                'day' => $faker->numberBetween(1, 30)
             ]);
+    
         };
     }
 }
