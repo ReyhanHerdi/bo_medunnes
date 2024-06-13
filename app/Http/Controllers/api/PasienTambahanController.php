@@ -19,10 +19,17 @@ class PasienTambahanController extends Controller
 
     public function show(int $id) {
         $data = PasienTambahan::where('pasien_id', $id)->get();
+        if (!empty($data)) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Data is found',
+                'data' => $data
+            ], 200);
+        }
+        
         return response()->json([
             'status' => true,
-            'message' => 'Data is found',
-            'data' => $data
+            'message' => 'Data not found',
         ], 200);
     }
 

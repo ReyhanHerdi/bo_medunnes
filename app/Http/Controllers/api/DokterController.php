@@ -19,11 +19,21 @@ class DokterController extends Controller
 
     public function show(int $id) {
         $data = Dokter::where('user_id', $id)->first();
-        return response()->json([
-            'status' => true,
-            'message' => 'Data found',
-            'data' => array($data)
-        ]);
+        if (!empty($data)) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Data found',
+                'data' => array($data)
+            ]);
+        } else {
+            $data = Dokter::find($id);
+            return response()->json([
+                'status' => true,
+                'message' => 'Data found',
+                'data' => array($data)
+            ]);
+        }
+
     }
 
     public function store(Request $request) {

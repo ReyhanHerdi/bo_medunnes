@@ -25,12 +25,12 @@ class PasienController extends Controller
                 'message' => 'Data is found',
                 'data' => array($pasien)
             ]);
-        } else {
-            return response()->json([
-                'status' => false,
-                'message' => 'Data is not found',
-            ]);
         }
+
+        return response()->json([
+            'status' => false,
+            'message' => 'Data is not found'
+        ]);
     }
 
     public function store(Request $request) {

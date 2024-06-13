@@ -18,7 +18,7 @@ class JanjiController extends Controller
     }
 
     public function show(int $id) {
-        $data = janji::find($id);
+        $data = janji::where('dokter_id', $id)->get();
         if (empty($data)) {
             return response()->json([
                 'status' => false,
