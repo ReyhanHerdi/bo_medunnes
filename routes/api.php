@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\PasienController;
 use App\Http\Controllers\Api\PasienTambahanController;
 use App\Http\Controllers\Api\RatingController;
 use App\Http\Controllers\Api\Auth\UserController;
+use App\Http\Controllers\api\ImageController;
 use App\Http\Controllers\api\SesiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,10 @@ Route::get('users/{id}', [UserController::class, 'show']);
 Route::post('users', [UserController::class, 'store']);
 Route::put('users/{id}', [UserController::class, 'update']);
 Route::delete('users/{id}', [UserController::class, 'destroy']);
+
+// Image
+Route::post('pasien/uploadImage/{id}', [ImageController::class, 'pasienImageUpload']);
+Route::post('dokter/uploadImage/{id}', [ImageController::class, 'dokterImageUpload']);
 
 // Login
 Route::get('login', [LoginController::class, 'loginStatus']);

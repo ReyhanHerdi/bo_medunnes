@@ -5,6 +5,7 @@ use App\Http\Controllers\antarmuka\DashboardController;
 use App\Http\Controllers\antarmuka\LoginController;
 use App\Http\Controllers\antarmuka\PasienviewController;
 use App\Http\Controllers\antarmuka\RegistrasiController;
+use App\Http\Controllers\api\ImageController;
 use App\Models\Pasien;
 use App\Models\Spesialis;
 use Illuminate\Support\Facades\Auth;
@@ -105,6 +106,7 @@ Route::get('create_spesialis', [SpesialisController::class,'store'])->name('spes
 Route::delete('/hapus_spesialis/{id}', [SpesialisController::class,'destroy'])->name('spesialis.destroy');
 
 Route::get('activity', [App\Http\Controllers\backend\ActivitylogController::class,'index'])->name('activity.index');
+
 
 // Route::get('list_akun', [UsermanagementController::class,'UserList'])->name('user.index');
 // Route::get('/edit_user/{id}', [App\Http\Controllers\backend\UsermanagementController::class,'UserEdit']);
