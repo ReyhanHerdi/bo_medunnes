@@ -14,7 +14,7 @@ class ImageController extends Controller
         $pasien = Pasien::where('user_id', $id)->first();
 
         $req->validate([
-            'image' => 'required'|'mimes:jpg,png'
+            'image' => ['required','mimes:jpeg,png']
         ]);
 
 

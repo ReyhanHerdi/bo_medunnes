@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dokter;
 use App\Models\janji;
+use App\Models\Pasien;
 use Illuminate\Http\Request;
 
 class JanjiController extends Controller
 {
     public function index() {
-        $data = janji::orderBy('id_janji', 'asc')->get();
+        $data = Janji::with('pasien')->with('pasienTambahan')->get();
         return response()->json([
             'status' => true,
             'message' => 'Data is found',
@@ -18,7 +20,7 @@ class JanjiController extends Controller
     }
 
     public function show(int $id) {
-        $data = janji::where('dokter_id', $id)->get();
+        $data = Janji::with('pasien')->with('pasienTambahan')->where('dokter_id', $id)->get();
         if (empty($data)) {
             return response()->json([
                 'status' => false,

@@ -28,6 +28,16 @@ class Pasien extends Model
         return $this->hasMany(Konsultasi::class, 'pasien_id', 'id_pasien');
     }
 
+    public function janji()
+    {
+        return $this->hasMany(janji::class, 'pasien_id', 'id_pasien');
+    }
+
+    public function pasienTambahan()
+    {
+        return $this->hasMany(PasienTambahan::class, 'pasien_id', 'id_pasien');
+    }
+
 
     /**
      * The attributes that are mass assignable.

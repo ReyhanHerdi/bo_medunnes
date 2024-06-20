@@ -86,6 +86,11 @@ class Dokter extends Model
         return $this->hasMany(Konsultasi::class, 'dokter_id', 'id_dokter');
     }
 
+    public function janji()
+    {
+        return $this->hasMany(janji::class, 'dokter_id', 'id_dokter');
+    }
+
     public function rating()
     {
         return $this->hasMany(Rating::class, 'dokter_id', 'id_dokter');

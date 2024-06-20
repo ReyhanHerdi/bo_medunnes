@@ -107,10 +107,6 @@ class PasienController extends Controller
                 $pasien->TB = $request->TB;
                 $pasien->BB = $request->BB;
                 $pasien->status = $request->status;
-
-                if ($request->img_pasien != null) {
-                    return redirect()->route('uploadImage', ['id' => $id]);
-                }
         
                 $post = $pasien->save();
         
