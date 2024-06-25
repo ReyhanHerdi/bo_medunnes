@@ -25,6 +25,11 @@ class Konsultasi extends Model
         return $this->belongsTo(Pasien::class, 'pasien_id' );
     }
 
+    public function dokter()
+    {
+        return $this->belongsTo(Dokter::class, 'dokter_id' );
+    }
+
 
 
     /**

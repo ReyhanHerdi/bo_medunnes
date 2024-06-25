@@ -36,6 +36,24 @@ class DokterController extends Controller
 
     }
 
+    public function showById(int $id) {
+        $data = Dokter::find($id);
+        if (!empty($data)) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Data found',
+                'data' => array($data)
+            ]);
+        }
+        return response()->json([
+            'status' => false,
+            'message' => 'Data not found',
+            'data' => array($data)
+        ]);
+
+    }
+
+
     public function store(Request $request) {
         $request->validate([
             'user_id' => 'required',

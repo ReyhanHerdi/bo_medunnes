@@ -9,7 +9,9 @@ use Illuminate\Http\Request;
 class KonsultasiController extends Controller
 {
     public function index() {
-        $data = Konsultasi::orderBy('id_konsultasi', 'asc')->get();
+        $data = Konsultasi::with('pasien')
+                            ->with('dokter')
+                            ->get();
         return response()->json([
             'status' => true,
             'message' => 'Data is found',
@@ -18,7 +20,29 @@ class KonsultasiController extends Controller
     }
 
     public function show(int $id) {
-        $data = Konsultasi::find($id);
+        $data = Konsultasi::where('pasien_id', $id)
+                            ->with('pasien')
+                            ->with('dokter')
+                            ->get();
+        if (empty($data)) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data not found'
+            ]);
+        } else {
+            return response()->json([
+                'status' => true,
+                'message' => 'Data found',
+                'data' => $data
+            ]);
+        }
+    }
+
+    public function showByDokter(int $id) {
+        $data = Konsultasi::where('dokter_id', $id)
+                            ->with('pasien')
+                            ->with('dokter')
+                            ->get();
         if (empty($data)) {
             return response()->json([
                 'status' => false,

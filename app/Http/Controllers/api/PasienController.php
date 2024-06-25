@@ -33,6 +33,21 @@ class PasienController extends Controller
         ]);
     }
 
+    public function showById(int $id) {
+        $pasien = Pasien::find($id);
+        if($pasien) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Data is found',
+                'data' => array($pasien)
+            ]);
+        }
+        return response()->json([
+            'status' => true,
+            'message' => 'Data is found'
+        ]);
+    }
+
     public function store(Request $request) {
         try {
             $request->validate([
