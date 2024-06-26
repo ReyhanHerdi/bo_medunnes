@@ -72,6 +72,7 @@ Route::delete('dokter/{id}', [DokterController::class, 'destroy']);
 Route::get('konsultasi', [KonsultasiController::class, 'index']);
 Route::get('konsultasi/{id}', [KonsultasiController::class, 'show']);
 Route::get('konsultasi/dokter/{id}', [KonsultasiController::class, 'showByDokter']);
+Route::get('konsultasi/pasien/{id}', [KonsultasiController::class, 'showByPasien']);
 Route::post('konsultasi', [KonsultasiController::class, 'store']);
 Route::put('konsultasi/{id}', [KonsultasiController::class, 'update']);
 Route::delete('konsultasi/{id}', [KonsultasiController::class, 'destroy']);

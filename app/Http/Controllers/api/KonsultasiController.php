@@ -20,6 +20,25 @@ class KonsultasiController extends Controller
     }
 
     public function show(int $id) {
+        $data = Konsultasi::find($id)
+                            ->with('pasien')
+                            ->with('dokter')
+                            ->first();
+        if (empty($data)) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data not found'
+            ]);
+        } else {
+            return response()->json([
+                'status' => true,
+                'message' => 'Data found',
+                'data' => $data
+            ]);
+        }
+    }
+
+    public function showByPasien(int $id) {
         $data = Konsultasi::where('pasien_id', $id)
                             ->with('pasien')
                             ->with('dokter')
