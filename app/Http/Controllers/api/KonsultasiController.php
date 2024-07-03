@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\Konsultasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class KonsultasiController extends Controller
 {
@@ -20,7 +21,7 @@ class KonsultasiController extends Controller
     }
 
     public function show(int $id) {
-        $data = Konsultasi::find($id)
+        $data = Konsultasi::where('id_konsultasi', $id)
                             ->with('pasien')
                             ->with('dokter')
                             ->first();
@@ -33,7 +34,7 @@ class KonsultasiController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'Data found',
-                'data' => $data
+                'data' => array($data)
             ]);
         }
     }
@@ -93,6 +94,7 @@ class KonsultasiController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'Insert data success',
+            'data' => array($konsultasi)
         ]);
     }
 
@@ -108,12 +110,14 @@ class KonsultasiController extends Controller
             $request->validate([
                 'pasien_id' => 'required',
                 'dokter_id' => 'required',
-                'topik' => 'required'
+                'topik' => 'required',
+                'status' => 'required'
             ]);
     
             $konsultasi->pasien_id = $request->pasien_id;
             $konsultasi->dokter_id = $request->dokter_id;
             $konsultasi->topik = $request->topik;
+            $konsultasi->status = $request->status;
     
             $post = $konsultasi->save();
     

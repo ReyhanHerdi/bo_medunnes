@@ -36,13 +36,11 @@ class DiskusiController extends Controller
     public function store(Request $request) {
         $request->validate([
             'konsultasi_id' => 'required',
-            'pasien_id' => 'required',
             'message' => 'required'
         ]);
 
         $diskusi = new Diskusi();
         $diskusi->konsultasi_id = $request->konsultasi_id;
-        $diskusi->pasien_id = $request->pasien_id;
         $diskusi->message = $request->message;
 
         $post = $diskusi->save();

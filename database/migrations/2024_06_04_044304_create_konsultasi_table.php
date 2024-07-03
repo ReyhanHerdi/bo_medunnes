@@ -16,6 +16,7 @@ return new class extends Migration
             $table->bigInteger('pasien_id')->index();
             $table->bigInteger('dokter_id')->index();
             $table->string('topik');
+            $table->enum('status', ['berlangsung', 'berakhir', 'belum dimulai']);
             $table->timestamps();
         });
     }

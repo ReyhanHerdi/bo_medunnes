@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\PasienController;
 use App\Http\Controllers\Api\PasienTambahanController;
 use App\Http\Controllers\Api\RatingController;
 use App\Http\Controllers\Api\Auth\UserController;
+use App\Http\Controllers\api\CatatanController;
 use App\Http\Controllers\api\ImageController;
 use App\Http\Controllers\api\SesiController;
 use Illuminate\Http\Request;
@@ -97,3 +98,8 @@ Route::post('rating', [RatingController::class, 'store']);
 
 // Sesi
 Route::get('sesi', [SesiController::class, 'index']);
+
+// Catatan
+Route::get('catatan/{id}', [CatatanController::class, 'index']);
+Route::post('catatan', [CatatanController::class, 'store']);
+Route::put('catatan/{id}', [CatatanController::class, 'update']);

@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('diskusi', function (Blueprint $table) {
             $table->id('id_diskusi')->autoIncrement();
             $table->bigInteger('konsultasi_id')->index();
-            $table->bigInteger('pasien_id')->index();
-            $table->string('message');
+            $table->string('message')->nullable();
             $table->timestamps();
         });
     }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('user_pasien', function (Blueprint $table) {
             $table->id('id_pasien')->autoIncrement();
             $table->bigInteger('user_id')->index();
-            $table->bigInteger('nik');
+            $table->bigInteger('NIK');
             $table->string('nama_pasien');
             $table->string('img_pasien')->nullable();
             $table->enum('jenis_kelamin', ['L', 'P']);

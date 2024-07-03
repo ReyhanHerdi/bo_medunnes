@@ -42,6 +42,7 @@ class Konsultasi extends Model
         'pasien_id',
         'mahasiswa_id',
         'topik',
+        'status',
         'created_at'
     ];
 

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('no_tlp');
             $table->string('tempat_kerja');
-            $table->string('tahun_lulus');
+            $table->integer('tahun_lulus');
             $table->date('tgl_mulai_aktif');
             $table->string('alumni_kampus');
             $table->bigInteger('no_reg');

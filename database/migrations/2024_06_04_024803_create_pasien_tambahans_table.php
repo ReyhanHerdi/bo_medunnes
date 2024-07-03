@@ -15,8 +15,8 @@ return new class extends Migration
             $table->bigIncrements('id_pasien_tambahan');
             $table->bigInteger('pasien_id')->index();
             $table->string('nama_pasien_tambahan');
-            $table->string('TB');
-            $table->string('BB');
+            $table->integer('TB');
+            $table->integer('BB');
             $table->enum('jenis_kelamin', ['L', 'P']);
             $table->date('tgl_lahir');
             $table->string('hubungan_keluarga');
