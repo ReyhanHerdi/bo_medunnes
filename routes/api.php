@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\ArtikelController;
 use App\Http\Controllers\api\Auth\LoginController;
 use App\Http\Controllers\Api\DiskusiController;
 use App\Http\Controllers\Api\DokterController;
@@ -103,3 +104,6 @@ Route::get('sesi', [SesiController::class, 'index']);
 Route::get('catatan/{id}', [CatatanController::class, 'index']);
 Route::post('catatan', [CatatanController::class, 'store']);
 Route::put('catatan/{id}', [CatatanController::class, 'update']);
+
+// artikel
+Route::get('artikel', [ArtikelController::class, 'index']);
